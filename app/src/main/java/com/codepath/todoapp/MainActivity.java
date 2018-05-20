@@ -96,6 +96,31 @@ public class MainActivity extends AppCompatActivity {
         return new File(getFilesDir(), "todo.txt");
     }
 
+    //handle results from edit activity
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // if the edit activity completed ok
+        if (resultCode == RESULT_OK && requestCode == EDIT_REQUEST_CODE){
+            // extract updated item text from result intent extras
+            String updatedItem = data.getExtras().getString(ITEM_TEXT);
+            // extract original position of edited item
+            int position = data.getExtras().getInt(ITEM_POSITION);
+            // update the model with new item at position
+            items.set(position,updatedItem);
+            //notfiy the adapter that the model changed
+            itemsAdapter.notifyDataSetChanged();
+            // persist the changed model
+            writeItems();
+            // notify the user the operation completed
+            Toast.makeText(this, "Item updated successfully", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
     private void readItems(){
         try {
             items = new ArrayList<>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
