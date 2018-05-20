@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D4E7E8"
     tools:context=".MainActivity">
 
     <Button
@@ -11,10 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="9dp"
+        android:background="#6a75b5"
         android:onClick="onAddItem"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,13 +37,17 @@
         android:id="@+id/etNewItem"
         android:layout_width="257dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginStart="7dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="Add a new task"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btnAddItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvItems" />
 
 </android.support.constraint.ConstraintLayout>

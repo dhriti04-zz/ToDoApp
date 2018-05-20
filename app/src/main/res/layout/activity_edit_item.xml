@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D4DAE8"
     tools:context=".EditItemActivity">
 
     <EditText
@@ -26,6 +27,7 @@
         android:layout_marginRight="148dp"
         android:layout_marginStart="148dp"
         android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
         android:onClick="onSaveItem"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
