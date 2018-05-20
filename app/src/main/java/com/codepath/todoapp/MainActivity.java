@@ -1,5 +1,6 @@
 package com.codepath.todoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +19,13 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+//    numeric code to identify the edit activity
+    public final static int EDIT_REQUEST_CODE = 20;
+
+//    keys used for passing data between activities
+    public final static String ITEM_TEXT = "itemText";
+    public final static String ITEM_POSITION = "itemPosition";
 
     ArrayList<String> items;
     ArrayAdapter<String> itemsAdapter;
@@ -41,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupListViewListener();
 
+
     }
 
     public void onAddItem(View v){
@@ -56,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupListViewListener(){
         Log.i("MainActivity", "Setting up listener on list view");
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("MainActivity","Item romoved from list: "+ position);
@@ -65,6 +73,21 @@ public class MainActivity extends AppCompatActivity {
                 itemsAdapter.notifyDataSetChanged();
                 writeItems();
                 return true;
+            }
+        });
+
+//        set up item listener for edit (its a regular click)
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                create new activity
+                Intent i = new Intent(MainActivity.this, EditItemActivity.class);
+//                pass the data being edited
+                i.putExtra(ITEM_TEXT, items.get(position));
+                i.putExtra(ITEM_POSITION, position);
+//                display the actvity
+                startActivityForResult(i, EDIT_REQUEST_CODE);
+
             }
         });
     }
